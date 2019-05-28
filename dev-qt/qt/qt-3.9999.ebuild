@@ -269,6 +269,7 @@ src_install() {
 	# libraries
 	dolib.so lib/lib{editor,qassistantclient,designercore}.a
 	dolib.so lib/libqt-mt.la
+	dolib.so lib/libqt-mt.so.${qt_version}.0
 	dolib.so lib/libqt-mt.so.${qt_version} lib/libqui.so.1.0.0
 	cd "${D}"/${QTBASE}/$(get_libdir)
 
