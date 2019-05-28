@@ -14,7 +14,7 @@ DEPEND="x11-libs/libXext
 	x11-libs/libXfixes
 	x11-libs/libXrender
 	xcomposite? ( x11-libs/libXcomposite )
-	xinerama? ( x11-proto/xineramaproto )
+	x11-base/xorg-proto
 	xrandr? ( x11-libs/libXrandr )
 	libconfig? ( dev-libs/libconfig )
 	opengl? ( virtual/opengl )

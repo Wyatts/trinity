@@ -44,9 +44,7 @@ RDEPEND="
 	xinerama? ( x11-libs/libXinerama )
 	!<=dev-qt/qt-meta-3.3.8c"
 DEPEND="${RDEPEND}
-	x11-proto/inputproto
-	x11-proto/xextproto
-	xinerama? ( x11-proto/xineramaproto )"
+	x11-base/xorg-proto"
 
 #	immqt? ( x11-proto/xineramaproto )
 #	immqt-bc? ( x11-proto/xineramaproto )"

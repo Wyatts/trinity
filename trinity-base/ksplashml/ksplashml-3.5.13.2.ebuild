@@ -11,7 +11,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE="xinerama"
 
 DEPEND="x11-libs/libXcursor
-	xinerama? ( x11-proto/xineramaproto )"
+	x11-base/xorg-proto"
 RDEPEND="$DEPEND"
 
 src_configure() {

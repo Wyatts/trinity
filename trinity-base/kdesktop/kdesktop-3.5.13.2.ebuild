@@ -14,7 +14,7 @@ DEPEND="x11-libs/libXrender
 	x11-libs/libXcursor
 	>=trinity-base/libkonq-${PV}:${SLOT}
 	>=trinity-base/kcontrol-${PV}:${SLOT}
-	xscreensaver? ( x11-proto/scrnsaverproto )"
+	x11-base/xorg-proto"
 	# Requires the desktop background settings module,
 	# so until we separate the kcontrol modules into separate ebuilds :-),
 	# there's a dep here
