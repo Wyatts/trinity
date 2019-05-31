@@ -1,0 +1,20 @@
+--- kwin/client.cpp.orig        2019-05-29 22:34:17.203538750 -0400
++++ kwin/client.cpp     2019-05-29 22:35:40.685257420 -0400
+@@ -506,7 +506,7 @@
+     int format, result;
+     unsigned long n, left;
+     result = XGetWindowProperty(qt_xdisplay(), window(), atoms->net_wm_system_modal_notification, 0L, 1L, False, XA_CARDINAL, &actual, &format, &n, &left, /*(unsigned char **)*/ &data);
+-    if (result == Success && data != None && format == 32 )
++    if (result == Success && data && format == 32 )
+         {
+         return TRUE;
+         }
+@@ -2743,7 +2743,7 @@
+     int format, result;
+     unsigned long n, left;
+     result = XGetWindowProperty(qt_xdisplay(), window(), atoms->net_wm_window_opacity, 0L, 1L, False, XA_CARDINAL, &actual, &format, &n, &left, /*(unsigned char **)*/ &data);
+-    if (result == Success && data != None && format == 32 )
++    if (result == Success && data && format == 32 )
+         {
+         opacity_ = *reinterpret_cast< long* >( data );
+         custom_opacity = true;

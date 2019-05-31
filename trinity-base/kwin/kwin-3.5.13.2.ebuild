@@ -16,6 +16,8 @@ DEPEND="x11-libs/libXext
 	xcomposite? ( x11-libs/libXcomposite )"
 RDEPEND="${DEPEND}"
 
+PATCHES=("$FILESDIR/${PN}-3.5.13.2-fix-gcc7-ftbfs.patch")
+
 src_configure() {
 	mycmakeargs=(
 		$(cmake-utils_use_with xcomposite XCOMPOSITE)
