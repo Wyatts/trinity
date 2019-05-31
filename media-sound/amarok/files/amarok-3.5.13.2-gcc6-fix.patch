@@ -1,0 +1,33 @@
+--- a/amarok/src/magnatunebrowser/magnatunealbumdownloader.cpp
++++ b/amarok/src/magnatunebrowser/magnatunealbumdownloader.cpp
+@@ -167,7 +167,7 @@ void MagnatuneAlbumDownloader::coverDownloadAborted( )
+     m_albumDownloadJob = 0;
+     debug() << "Aborted cover download" << endl;
+ 
+-    emit( coverDownloadComplete( false ) );
++    emit( coverDownloadComplete( 0 ) );
+ }
+ 
+ void MagnatuneAlbumDownloader::coverAddComplete(TDEIO::Job * downloadJob)
+--- a/amarok/src/contextbrowser.cpp
++++ b/amarok/src/contextbrowser.cpp
+@@ -466,7 +466,7 @@ void ContextBrowser::openURLRequest( const KURL &url )
+         // Konqueror sidebar needs these
+         if (url.path() == "context") { m_dirtyCurrentTrackPage=true; showContext( KURL( "current://track" ) ); saveHtmlData(); }
+         if (url.path() == "wiki") { m_dirtyWikiPage=true; showWikipedia(); saveHtmlData(); }
+-        if (url.path() == "lyrics") { m_dirtyLyricsPage=true; m_wikiJob=false; showLyrics(); saveHtmlData(); }
++        if (url.path() == "lyrics") { m_dirtyLyricsPage=true; m_wikiJob=0; showLyrics(); saveHtmlData(); }
+     }
+
+     else if ( url.protocol() == "runscript" )
+--- a/amarok/src/mediadevice/generic/genericmediadevice.cpp
++++ b/amarok/src/mediadevice/generic/genericmediadevice.cpp
+@@ -440,7 +440,7 @@ GenericMediaDevice::renameItem( TQListViewItem *item ) // SLOT
+     debug() << "Renaming: " << src << " to: " << dst << endl;
+ 
+     //do we want a progress dialog?  If so, set last false to true
+-    if( KIO::NetAccess::file_move( KURL::fromPathOrURL(src), KURL::fromPathOrURL(dst), -1, false, false, false ) )
++    if( KIO::NetAccess::file_move( KURL::fromPathOrURL(src), KURL::fromPathOrURL(dst), -1, false, false, 0 ) )
+     {
+         m_mfm.erase( m_mim[item]->getFullName() );
+         m_mim[item]->setNamesFromBase( item->text(0) );
