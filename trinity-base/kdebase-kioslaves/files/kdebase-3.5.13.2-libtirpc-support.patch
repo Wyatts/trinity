@@ -1,0 +1,55 @@
+diff --git a/kioslave/ConfigureChecks.cmake b/kioslave/ConfigureChecks.cmake
+index eed3708..b1da9eb 100644
+--- a/kioslave/ConfigureChecks.cmake
++++ b/kioslave/ConfigureChecks.cmake
+@@ -13,3 +13,21 @@ if( WITH_SASL )
+     tde_message_fatal( "sasl2 are requested, but not found on your system" )
+   endif( )
+ endif( )
++
++# rpc/rpc.h, originally was shipped with glibc ...
++check_include_file( rpc/rpc.h HAVE_RPC_H )
++# ... but later might be not present (deprecated from 2.26)
++if( NOT HAVE_RPC_H )
++  pkg_search_module( TIRPC libtirpc )
++  if( NOT TIRPC_FOUND )
++    tde_message_fatal( "rpc/rpc.h is required, please check your glibc or libtirpc package" )
++  endif( )
++endif( )
++
++message( STATUS "Looking for rpcgen" )
++find_program( RPCGEN_BINARY rpcgen )
++if( RPCGEN_BINARY )
++  message( STATUS "Looking for rpcgen - ${RPCGEN_BINARY}" )
++else( RPCGEN_BINARY )
++  tde_message_fatal( "rpcgen is required, but not found on your system" )
++endif( RPCGEN_BINARY )
+--- a/kioslave/nfs/CMakeLists.txt
++++ b/kioslave/nfs/CMakeLists.txt
+@@ -14,6 +14,7 @@
+   ${CMAKE_BINARY_DIR}
+   ${TDE_INCLUDE_DIR}
+   ${TQT_INCLUDE_DIRS}
++  ${TIRPC_INCLUDE_DIRS}
+ )
+ 
+ link_directories(
+@@ -31,15 +32,15 @@
+ set( target kio_nfs )
+ 
+ add_custom_command( OUTPUT mount_xdr.c
+-  COMMAND rpcgen -c -o mount_xdr.c ${CMAKE_CURRENT_SOURCE_DIR}/mount.x
++  COMMAND ${RPCGEN_BINARY} -c -o mount_xdr.c ${CMAKE_CURRENT_SOURCE_DIR}/mount.x
+   DEPENDS mount.x )
+ 
+ add_custom_command( OUTPUT nfs_prot_xdr.c
+-  COMMAND rpcgen -c -o nfs_prot_xdr.c ${CMAKE_CURRENT_SOURCE_DIR}/nfs_prot.x
++  COMMAND ${RPCGEN_BINARY} -c -o nfs_prot_xdr.c ${CMAKE_CURRENT_SOURCE_DIR}/nfs_prot.x
+   DEPENDS nfs_prot.x )
+ 
+ tde_add_kpart( ${target} AUTOMOC
+   SOURCES kio_nfs.cpp mount_xdr.c nfs_prot_xdr.c
+-  LINK kio-shared
++  LINK kio-shared ${TIRPC_LIBRARIES}
+   DESTINATION ${PLUGIN_INSTALL_DIR}
+ )

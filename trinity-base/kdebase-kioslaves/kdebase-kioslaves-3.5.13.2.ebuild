@@ -24,7 +24,10 @@ RDEPEND="${DEPEND}
 	virtual/ssh
 	trinity-base/kdeeject:${SLOT}"
 
-PATCHES=( "${FILESDIR}/${TRINITY_MODULE_NAME}-3.5.13.2-fix-mandb-support-in-kio-man.patch" )
+PATCHES=( 
+	"${FILESDIR}/${TRINITY_MODULE_NAME}-3.5.13.2-fix-mandb-support-in-kio-man.patch"
+	"${FILESDIR}/${TRINITY_MODULE_NAME}-3.5.13.2-libtirpc-support.patch"
+	)
 
 src_configure() {
 	mycmakeargs=(
