@@ -1,0 +1,11 @@
+--- kdecore/network/kserversocket.cpp.orig	2019-05-29 17:17:12.641261204 -0400
++++ kdecore/network/kserversocket.cpp	2019-05-29 17:17:19.714240901 -0400
+@@ -292,7 +292,7 @@
+ 	}
+       else if (!listen())
+ 	// error happened during listen
+-	return false;
++	return 0L;
+     }
+ 
+   // check to see if we're doing a timeout

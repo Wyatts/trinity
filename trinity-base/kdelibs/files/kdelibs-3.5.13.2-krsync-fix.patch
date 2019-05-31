@@ -1,0 +1,12 @@
+--- krsync/krsync.cpp.orig      2019-05-29 19:28:47.132151332 -0400
++++ krsync/krsync.cpp   2019-05-29 19:29:36.288004807 -0400
+@@ -61,7 +61,7 @@
+ #define CONFIGURATION_FILE_SEPARATOR ';'
+
+ KRsync::KRsync (TQObject* parent, const char* name)
+-                : TQObject (parent, name), m_bSettingsLoaded(false), m_progressDialog(false), m_progressDialogExists(false), m_bInSpecialSync(false)
++                : TQObject (parent, name), m_bSettingsLoaded(0), m_progressDialog(NULL), m_progressDialogExists(false), m_bInSpecialSync(false)
+ {
+     loadSettings();
+
+

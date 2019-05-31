@@ -17,6 +17,7 @@ IUSE="alsa avahi arts cups fam jpeg2k lua lzma openexr spell sudo tiff utempter
 	xcomposite"
 
 DEPEND="${DEPEND}
+	<dev-qt/qt-3.9999
 	=dev-qt/tqtinterface-${TRINITY_VER}*
 	>=dev-libs/libxslt-1.1.16
 	>=dev-libs/libxml2-2.6.6
@@ -47,7 +48,11 @@ DEPEND="${DEPEND}
 
 RDEPEND="${DEPEND}"
 
-PATCHES=( "$FILESDIR/${PN}-3.5.13.2-make-xcomposite-optional.patch"
+PATCHES=("$FILESDIR/${PN}-3.5.13.2-fix-kserversocket-accept-return.patch" 
+		"$FILESDIR/${PN}-3.5.13.2-gcc6-strictness.patch"
+		"$FILESDIR/${PN}-3.5.13.2-krsync-fix.patch"
+		"$FILESDIR/${PN}-3.5.13.2-fix-perl-syntax.patch"
+		"$FILESDIR/${PN}-3.5.13.2-make-xcomposite-optional.patch"
 		"$FILESDIR/${PN}-3.5.13.1-fix-no-xcomposite.patch"
 		"$FILESDIR/${PN}-3.5.13.1-OnlyShowIn-TDE.patch" )
 
