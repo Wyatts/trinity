@@ -26,7 +26,7 @@ KEYWORDS="amd64 x86"
 need-trinity 3.5.13
 
 SLOT="${TRINITY_VER}"
-IUSE="mp4"
+IUSE="mp4 +xine"
 #IUSE="mp4 mysql +amazon opengl postgres
 #visualization ipod ifp real njb mtp musicbrainz daap
 #python"
@@ -37,8 +37,8 @@ DEPEND="
 	>=dev-lang/ruby-1.8
 	>=media-libs/taglib-1.4
 	mp4? ( media-libs/libmp4v2 )
+	>=media-libs/xine-lib-1.1.2_pre20060328-r8
 "
-	#>=media-libs/xine-lib-1.1.2_pre20060328-r8
 	#ifp? ( media-libs/libifp )
 	#ipod? ( >=media-libs/libgpod-0.5.2 )
 	#mp4? ( media-libs/libmp4v2 )
@@ -48,10 +48,6 @@ DEPEND="
 	#njb? ( >=media-libs/libnjb-2.2.4 )
 	#opengl? ( virtual/opengl )
 	#postgres? ( dev-db/postgresql-base )
-	#real? (
-		#media-libs/alsa-lib
-		#media-video/realplayer
-	#)
 	#visualization? (
 		#media-libs/libsdl
 		#=media-plugins/libvisual-plugins-0.4*
@@ -71,6 +67,7 @@ PATCHES=(
 src_configure() {
 	mycmakeargs=(
 		$(cmake-utils_use_with mp4 MP4V2)
+		$(cmake-utils_use_with xine XINE)
 	)
 
 	trinity-base_src_configure
