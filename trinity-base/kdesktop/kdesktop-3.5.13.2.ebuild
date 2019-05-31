@@ -27,7 +27,10 @@ RDEPEND="${DEPEND}
 
 TSM_EXTRACT_ALSO="kcheckpass/"
 
-PATCHES=( "$FILESDIR/${PN}-3.5.13.1-onlyshowin-tde.patch")
+PATCHES=(
+	"$FILESDIR/${PN}-3.5.13.1-onlyshowin-tde.patch"
+	"$FILESDIR/${PN}-3.5.13.1-rm-stat.include.patch"
+	)
 
 src_configure() {
 	mycmakeargs=(

@@ -1,0 +1,9 @@
+--- a/kdesktop/lock/lockprocess.cc
++++ b/kdesktop/lock/lockprocess.cc
+@@ -80,6 +80,4 @@
+ 
+ #include <kcrash.h>
+-
+-#include <linux/stat.h>
+ 
+ #include <X11/Xlib.h>
