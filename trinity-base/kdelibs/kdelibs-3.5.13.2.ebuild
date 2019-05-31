@@ -52,6 +52,7 @@ PATCHES=("$FILESDIR/${PN}-3.5.13.2-fix-kserversocket-accept-return.patch"
 		"$FILESDIR/${PN}-3.5.13.2-gcc6-strictness.patch"
 		"$FILESDIR/${PN}-3.5.13.2-krsync-fix.patch"
 		"$FILESDIR/${PN}-3.5.13.2-fix-perl-syntax.patch"
+		"$FILESDIR/${PN}-3.5.13.2-kjs-doublefree.patch"
 		"$FILESDIR/${PN}-3.5.13.2-make-xcomposite-optional.patch"
 		"$FILESDIR/${PN}-3.5.13.1-fix-no-xcomposite.patch"
 		"$FILESDIR/${PN}-3.5.13.1-OnlyShowIn-TDE.patch" )
